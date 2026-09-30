@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page introuvable · Learning Trip</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/png" sizes="64x64" href="/assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+{{HEAD_ASSETS}}
+</head>
+<body>
+<!-- Servie par l'hébergeur pour toute URL inconnue, à n'importe quelle
+     profondeur : tous les chemins sont absolus. -->
+
+<header class="nav solid">
+  <nav class="nav-inner" aria-label="Navigation principale">
+    <a class="nav-logo" href="/"><img src="/assets/img/logo.png" alt="Learning Trip" sizes="79px"></a>
+    <button class="nav-burger" aria-label="Menu">☰</button>
+    <ul class="nav-links">
+      <li><a href="/#destinations">Destinations</a></li>
+      <li><a href="/#simulateur">Simulateur</a></li>
+      <li><a href="/#brochure">Brochure</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+<section class="section" style="padding-top:calc(var(--nav-h) + 4rem)">
+  <div class="container">
+    <div class="section-head">
+      <span class="sticker">Erreur 404</span>
+      <h1 style="font-size:clamp(1.9rem,3.6vw,2.8rem);font-weight:700;margin:1rem 0 .8rem;letter-spacing:-.015em">Cette page n'existe pas (ou plus)</h1>
+      <p>L'adresse a peut-être changé. Reprenez le voyage depuis l'accueil ou choisissez directement une destination.</p>
+    </div>
+    <div class="hero-ctas" style="margin-top:0">
+      <a class="btn btn-primary btn-lg" href="/">Retour à l'accueil</a>
+      <a class="btn btn-ghost btn-lg" href="/#destinations">Voir les 11 destinations</a>
+    </div>
+  </div>
+</section>
+
+<section class="section section-ice" style="padding-top:3.5rem">
+  <div class="container">
+    <div class="section-head">
+      <span class="sticker">Envie d'ailleurs ?</span>
+      <h2>Quelques séjours pour repartir</h2>
+    </div>
+    <div class="others-grid">
+{{DEST_CARDS}}
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="container footer-bottom" style="border:none;padding-top:0">
+    <span>© <span id="year"></span> Learning Trip</span>
+    <span><a href="/mentions-legales.html">Mentions légales &amp; confidentialité</a> · <a href="/cgv.html">Conditions générales de vente</a></span>
+  </div>
+</footer>
+
+<script>window.LT_BASE = "/";</script>
+<script src="/assets/js/site.min.js" defer></script>
+</body>
+</html>

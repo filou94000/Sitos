@@ -3,26 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Learning Trip · Séjours pédagogiques à l'international pour CFA et écoles</title>
-  <meta name="description" content="Ouvrez l'international à vos apprentis : 11 destinations sur 4 continents, des séjours pédagogiques organisés de la préparation au bilan pour CFA et écoles. Testez votre budget, recevez notre brochure.">
+  <title>Séjours pédagogiques à l'étranger pour CFA · Learning Trip</title>
+  <meta name="description" content="Séjours pédagogiques à l'international pour CFA et écoles : 11 destinations sur 4 continents, organisées de la préparation au bilan. Testez votre budget.">
   <link rel="canonical" href="{{SITE_URL}}/">
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Learning Trip">
+  <meta property="og:locale" content="fr_FR">
   <meta property="og:title" content="Learning Trip · Ouvrez l'international à vos apprentis">
   <meta property="og:description" content="11 destinations sur 4 continents. Séjours pédagogiques pour CFA et écoles : pédagogie, logistique, partenariats, encadrement sur place.">
-  <meta property="og:image" content="{{SITE_URL}}/assets/img/og-image.png">
   <meta property="og:url" content="{{SITE_URL}}/">
-  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <meta property="og:image" content="{{SITE_URL}}/assets/img/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Learning Trip, séjours pédagogiques à l'international pour CFA et écoles">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Learning Trip · Ouvrez l'international à vos apprentis">
+  <meta name="twitter:description" content="11 destinations sur 4 continents. Séjours pédagogiques pour CFA et écoles : pédagogie, logistique, partenariats, encadrement sur place.">
+  <meta name="twitter:image" content="{{SITE_URL}}/assets/img/og-image.png">
+  <meta name="twitter:image:alt" content="Learning Trip, séjours pédagogiques à l'international pour CFA et écoles">
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/img/favicon.png">
   <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/site.css">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="preload" href="assets/img/hero-poster.jpg" as="image" fetchpriority="high">
+{{HEAD_ASSETS}}
+  {{JSONLD}}
 </head>
 <body>
 
 <header class="nav">
-  <div class="nav-inner">
-    <a class="nav-logo" href="index.html"><img src="assets/img/logo.png" alt="Learning Trip"></a>
+  <nav class="nav-inner" aria-label="Navigation principale">
+    <a class="nav-logo" href="./"><img src="assets/img/logo.png" alt="Learning Trip" sizes="79px"></a>
     <button class="nav-burger" aria-label="Menu">☰</button>
     <ul class="nav-links">
       <li><a href="#destinations">Destinations</a></li>
@@ -31,10 +41,11 @@
       <li><a href="#brochure">Brochure</a></li>
       <li><a href="#" class="btn btn-primary" style="padding:.55em 1.3em" data-open-modal="conseiller">Être rappelé</a></li>
     </ul>
-  </div>
+  </nav>
   <div class="nav-progress"></div>
 </header>
 
+<main>
 <!-- ======================= HERO ======================= -->
 <section class="hero">
   <video class="hero-video" autoplay muted loop playsinline preload="auto"
@@ -63,7 +74,6 @@
 </section>
 
 <!-- ======================= ACCÈS RAPIDE (liens utiles) ======================= -->
-<main>
 <section class="section section-ice" id="acces-rapide">
   <div class="container">
     <div class="section-head reveal" style="text-align:center;max-width:560px;margin-inline:auto">
@@ -225,14 +235,14 @@
       <div class="brochure-stack reveal" aria-hidden="true">
         <div class="brochure-cover bc-photo" style="background-image:url(assets/img/destinations/montreal.jpg)">
           <span class="bc-year">2026-2027</span>
-          <div class="bc-foot"><span class="bc-region">Amériques</span><img class="bc-logo" src="assets/img/logo.png" alt=""></div>
+          <div class="bc-foot"><span class="bc-region">Amériques</span><img class="bc-logo" src="assets/img/logo.png" alt="" loading="lazy" sizes="78px"></div>
         </div>
         <div class="brochure-cover bc-real">
-          <img class="bc-real-img" src="assets/brochure/cover.jpg" alt="Brochure Learning Trip 2026-2027">
+          <img class="bc-real-img" src="assets/brochure/cover.jpg" alt="Brochure Learning Trip 2026-2027" loading="lazy" sizes="250px">
         </div>
         <div class="brochure-cover bc-photo" style="background-image:url(assets/img/destinations/tokyo.jpg)">
           <span class="bc-year">2026-2027</span>
-          <div class="bc-foot"><span class="bc-region">Asie</span><img class="bc-logo" src="assets/img/logo.png" alt=""></div>
+          <div class="bc-foot"><span class="bc-region">Asie</span><img class="bc-logo" src="assets/img/logo.png" alt="" loading="lazy" sizes="78px"></div>
         </div>
       </div>
     </div>
@@ -258,15 +268,15 @@
       <p>Une équipe d'encadrants qui accompagne vos apprentis sur le terrain, du premier briefing au dernier jour du séjour.</p>
     </div>
     <div class="team-grid reveal">
-      <figure class="team-member"><img src="assets/img/team/idriss.jpg" alt="Idriss Maatoug" loading="lazy"><figcaption><b>Idriss Maatoug</b><span>Directeur associé</span></figcaption></figure>
-      <figure class="team-member"><img src="assets/img/team/mehdi.jpg" alt="Mehdi Maatoug" loading="lazy"><figcaption><b>Mehdi Maatoug</b><span>Directeur associé</span></figcaption></figure>
-      <figure class="team-member"><img src="assets/img/team/aline.jpg" alt="Aline Angappa" loading="lazy"><figcaption><b>Aline Angappa</b><span>Directrice partenariats</span></figcaption></figure>
-      <figure class="team-member"><img src="assets/img/team/amine.jpg" alt="Amine Fadel" loading="lazy"><figcaption><b>Amine Fadel</b><span>Coordinateur</span></figcaption></figure>
-      <figure class="team-member"><img src="assets/img/team/tony.jpg" alt="Tony Gaetan" loading="lazy"><figcaption><b>Tony Gaetan</b><span>Coordinateur</span></figcaption></figure>
-      <figure class="team-member"><img src="assets/img/team/marco.jpg" alt="Marco Chateaubon" loading="lazy"><figcaption><b>Marco Chateaubon</b><span>Relations étudiants</span></figcaption></figure>
-      <figure class="team-member"><img src="assets/img/team/hamza.jpg" alt="Hamza" loading="lazy"><figcaption><b>Hamza</b><span>Référent local</span></figcaption></figure>
-      <figure class="team-member"><img src="assets/img/team/ernesto.jpg" alt="Ernesto Sarrión" loading="lazy"><figcaption><b>Ernesto Sarrión</b><span>Référent local</span></figcaption></figure>
-      <figure class="team-member"><img src="assets/img/team/raoul.jpg" alt="Raoul Dey" loading="lazy"><figcaption><b>Raoul Dey</b><span>Coordinateur</span></figcaption></figure>
+      <figure class="team-member"><img src="assets/img/team/idriss.jpg" alt="Idriss Maatoug" loading="lazy" sizes="122px"><figcaption><b>Idriss Maatoug</b><span>Directeur associé</span></figcaption></figure>
+      <figure class="team-member"><img src="assets/img/team/mehdi.jpg" alt="Mehdi Maatoug" loading="lazy" sizes="122px"><figcaption><b>Mehdi Maatoug</b><span>Directeur associé</span></figcaption></figure>
+      <figure class="team-member"><img src="assets/img/team/aline.jpg" alt="Aline Angappa" loading="lazy" sizes="122px"><figcaption><b>Aline Angappa</b><span>Directrice partenariats</span></figcaption></figure>
+      <figure class="team-member"><img src="assets/img/team/amine.jpg" alt="Amine Fadel" loading="lazy" sizes="122px"><figcaption><b>Amine Fadel</b><span>Coordinateur</span></figcaption></figure>
+      <figure class="team-member"><img src="assets/img/team/tony.jpg" alt="Tony Gaetan" loading="lazy" sizes="122px"><figcaption><b>Tony Gaetan</b><span>Coordinateur</span></figcaption></figure>
+      <figure class="team-member"><img src="assets/img/team/marco.jpg" alt="Marco Chateaubon" loading="lazy" sizes="122px"><figcaption><b>Marco Chateaubon</b><span>Relations étudiants</span></figcaption></figure>
+      <figure class="team-member"><img src="assets/img/team/hamza.jpg" alt="Hamza" loading="lazy" sizes="122px"><figcaption><b>Hamza</b><span>Référent local</span></figcaption></figure>
+      <figure class="team-member"><img src="assets/img/team/ernesto.jpg" alt="Ernesto Sarrión" loading="lazy" sizes="122px"><figcaption><b>Ernesto Sarrión</b><span>Référent local</span></figcaption></figure>
+      <figure class="team-member"><img src="assets/img/team/raoul.jpg" alt="Raoul Dey" loading="lazy" sizes="122px"><figcaption><b>Raoul Dey</b><span>Coordinateur</span></figcaption></figure>
     </div>
   </div>
 </section>
@@ -280,14 +290,14 @@
       <p>Pas une mise en scène : des instants réels, pris pendant nos séjours avec les groupes partis avec nous.</p>
     </div>
     <div class="gallery-grid mosaic reveal">
-      <figure class="gallery-item gallery-item--big"><img src="assets/img/sejours/montreal/alumni.jpg" alt="La promotion Epitech au grand complet, réunie en amphithéâtre à Montréal avec Learning Trip" loading="lazy"><figcaption>100 étudiants partis avec nous.</figcaption></figure>
-      <figure class="gallery-item"><img src="assets/img/sejours/montreal/conference.jpg" alt="Conférence en amphithéâtre pendant le séjour" loading="lazy"><figcaption>Immersion dans l'écosystème tech.</figcaption></figure>
-      <figure class="gallery-item"><img src="assets/img/sejours/montreal/visite.jpg" alt="Présentation lors d'une visite d'entreprise à Montréal" loading="lazy"><figcaption>Visite d'un partenaire local.</figcaption></figure>
-      <figure class="gallery-item"><img src="assets/img/sejours/montreal/mentor.jpg" alt="Un professionnel échange avec le groupe d'étudiants" loading="lazy"><figcaption>Un échange sans filtre avec un pro.</figcaption></figure>
-      <figure class="gallery-item"><img src="assets/img/sejours/montreal/echange.jpg" alt="Deux étudiantes souriantes lors d'une visite" loading="lazy"><figcaption>Des rencontres qui marquent.</figcaption></figure>
-      <figure class="gallery-item"><img src="assets/img/sejours/montreal/energie.jpg" alt="Une étudiante célèbre une victoire, bras levés" loading="lazy"><figcaption>L'énergie d'un défi remporté.</figcaption></figure>
-      <figure class="gallery-item"><img src="assets/img/sejours/montreal/cohesion.jpg" alt="Le groupe réuni devant l'enseigne Prison Island Montréal" loading="lazy"><figcaption>Cohésion de groupe.</figcaption></figure>
-      <figure class="gallery-item gallery-item--wide"><img src="assets/img/sejours/montreal/arcade.jpg" alt="Des étudiants jouent sur une borne d'arcade rétro" loading="lazy"><figcaption>Le choc culturel, version rétro.</figcaption></figure>
+      <figure class="gallery-item gallery-item--big"><img src="assets/img/sejours/montreal/alumni.jpg" alt="La promotion Epitech au grand complet, réunie en amphithéâtre à Montréal avec Learning Trip" loading="lazy" sizes="auto, (min-width: 1283px) 583px, (min-width: 901px) 46vw, 92vw"><figcaption>100 étudiants partis avec nous.</figcaption></figure>
+      <figure class="gallery-item"><img src="assets/img/sejours/montreal/conference.jpg" alt="Conférence en amphithéâtre pendant le séjour" loading="lazy" sizes="auto, (min-width: 1283px) 285px, (min-width: 901px) 23vw, (min-width: 521px) 46vw, 92vw"><figcaption>Immersion dans l'écosystème tech.</figcaption></figure>
+      <figure class="gallery-item"><img src="assets/img/sejours/montreal/visite.jpg" alt="Présentation lors d'une visite d'entreprise à Montréal" loading="lazy" sizes="auto, (min-width: 1283px) 285px, (min-width: 901px) 23vw, (min-width: 521px) 46vw, 92vw"><figcaption>Visite d'un partenaire local.</figcaption></figure>
+      <figure class="gallery-item"><img src="assets/img/sejours/montreal/mentor.jpg" alt="Un professionnel échange avec le groupe d'étudiants" loading="lazy" sizes="auto, (min-width: 1283px) 285px, (min-width: 901px) 23vw, (min-width: 521px) 46vw, 92vw"><figcaption>Un échange sans filtre avec un pro.</figcaption></figure>
+      <figure class="gallery-item"><img src="assets/img/sejours/montreal/echange.jpg" alt="Deux étudiantes souriantes lors d'une visite" loading="lazy" sizes="auto, (min-width: 1283px) 285px, (min-width: 901px) 23vw, (min-width: 521px) 46vw, 92vw"><figcaption>Des rencontres qui marquent.</figcaption></figure>
+      <figure class="gallery-item"><img src="assets/img/sejours/montreal/energie.jpg" alt="Une étudiante célèbre une victoire, bras levés" loading="lazy" sizes="auto, (min-width: 1283px) 285px, (min-width: 901px) 23vw, (min-width: 521px) 46vw, 92vw"><figcaption>L'énergie d'un défi remporté.</figcaption></figure>
+      <figure class="gallery-item"><img src="assets/img/sejours/montreal/cohesion.jpg" alt="Le groupe réuni devant l'enseigne Prison Island Montréal" loading="lazy" sizes="auto, (min-width: 1283px) 285px, (min-width: 901px) 23vw, (min-width: 521px) 46vw, 92vw"><figcaption>Cohésion de groupe.</figcaption></figure>
+      <figure class="gallery-item gallery-item--wide"><img src="assets/img/sejours/montreal/arcade.jpg" alt="Des étudiants jouent sur une borne d'arcade rétro" loading="lazy" sizes="auto, (min-width: 1283px) 583px, (min-width: 901px) 46vw, 92vw"><figcaption>Le choc culturel, version rétro.</figcaption></figure>
     </div>
   </div>
 </section>
@@ -301,7 +311,13 @@
       <p>Un aperçu de ce que vivent les apprentis sur le terrain, en immersion.</p>
     </div>
     <div class="video-embed reveal">
-      <iframe src="https://www.youtube-nocookie.com/embed/2XJ-0_TtVMI" title="Learning Trip · Tanger : immersion internationale avec les étudiants d'Igensia" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <!-- façade : le lecteur YouTube n'est chargé qu'au clic (voir site.js) -->
+      <a class="yt-facade" href="https://www.youtube.com/watch?v=2XJ-0_TtVMI" target="_blank" rel="noopener"
+         data-yt-id="2XJ-0_TtVMI" data-yt-title="Learning Trip · Tanger : immersion internationale avec les étudiants d'Igensia"
+         aria-label="Lire la vidéo : Learning Trip · Tanger, immersion internationale avec les étudiants d'Igensia">
+        <picture><source type="image/webp" srcset="https://i.ytimg.com/vi_webp/2XJ-0_TtVMI/maxresdefault.webp"><img src="https://i.ytimg.com/vi/2XJ-0_TtVMI/hqdefault.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async"></picture>
+        <span class="yt-play" aria-hidden="true"><svg viewBox="0 0 68 48"><path class="yt-bg" d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z"/><path d="M45 24 27 14v20" fill="#fff"/></svg></span>
+      </a>
     </div>
   </div>
 </section>
@@ -317,15 +333,15 @@
     <div class="logo-marquee reveal" aria-label="Écoles, CFA et partenaires">
       <div class="logo-track">
         <!-- série 1 (visible aux lecteurs d'écran) -->
-        <a class="logo-item logo-item--dark" href="https://www.epitech.eu/" target="_blank" rel="noopener"><img src="assets/logo/epitech.png" alt="Epitech"></a>
-        <a class="logo-item" href="https://www.igensia-education.fr/" target="_blank" rel="noopener"><img src="assets/logo/igensia.png" alt="Groupe Igensia Education"></a>
-        <a class="logo-item" href="https://cfa-insta.fr/" target="_blank" rel="noopener"><img src="assets/logo/cfa-insta.png" alt="CFA INSTA"></a>
-        <a class="logo-item" href="https://www.skooleo.fr/" target="_blank" rel="noopener"><img src="assets/logo/skooleo.png" alt="Skooleo"></a>
+        <a class="logo-item logo-item--dark" href="https://www.epitech.eu/" target="_blank" rel="noopener"><img src="assets/logo/epitech.png" alt="Epitech" loading="lazy" sizes="160px"></a>
+        <a class="logo-item" href="https://www.igensia-education.fr/" target="_blank" rel="noopener"><img src="assets/logo/igensia.png" alt="Groupe Igensia Education" loading="lazy" sizes="160px"></a>
+        <a class="logo-item" href="https://cfa-insta.fr/" target="_blank" rel="noopener"><img src="assets/logo/cfa-insta.png" alt="CFA INSTA" loading="lazy" sizes="160px"></a>
+        <a class="logo-item" href="https://www.skooleo.fr/" target="_blank" rel="noopener"><img src="assets/logo/skooleo.png" alt="Skooleo" loading="lazy" sizes="160px"></a>
         <!-- série 2 (duplicata décoratif, pour la boucle continue) -->
-        <a class="logo-item logo-item--dark" href="https://www.epitech.eu/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="assets/logo/epitech.png" alt=""></a>
-        <a class="logo-item" href="https://www.igensia-education.fr/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="assets/logo/igensia.png" alt=""></a>
-        <a class="logo-item" href="https://cfa-insta.fr/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="assets/logo/cfa-insta.png" alt=""></a>
-        <a class="logo-item" href="https://www.skooleo.fr/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="assets/logo/skooleo.png" alt=""></a>
+        <a class="logo-item logo-item--dark" href="https://www.epitech.eu/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="assets/logo/epitech.png" alt="" loading="lazy" sizes="160px"></a>
+        <a class="logo-item" href="https://www.igensia-education.fr/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="assets/logo/igensia.png" alt="" loading="lazy" sizes="160px"></a>
+        <a class="logo-item" href="https://cfa-insta.fr/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="assets/logo/cfa-insta.png" alt="" loading="lazy" sizes="160px"></a>
+        <a class="logo-item" href="https://www.skooleo.fr/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="assets/logo/skooleo.png" alt="" loading="lazy" sizes="160px"></a>
       </div>
     </div>
     <p class="partners-note reveal"><a href="https://www.linkedin.com/posts/international-epitech_its-a-wrap-100-epitech-students-in-activity-7467228481777455104-56sA" target="_blank" rel="noopener">100 étudiants Epitech déjà partis avec nous. Voir le reportage →</a></p>
@@ -370,11 +386,11 @@
   <div class="container">
     <div class="footer-grid">
       <div>
-        <img class="flogo" src="assets/img/logo.png" alt="Learning Trip">
+        <img class="flogo" src="assets/img/logo.png" alt="Learning Trip" loading="lazy" sizes="82px">
         <p>Séjours pédagogiques à l'international pour les CFA et les écoles.<br>Préparation, logistique, partenariats, encadrement sur place.</p>
       </div>
       <div>
-        <h4>Explorer</h4>
+        <p class="footer-title">Explorer</p>
         <ul>
           <li><a href="#destinations">Destinations</a></li>
           <li><a href="#simulateur">Simulateur de budget</a></li>
@@ -383,7 +399,7 @@
         </ul>
       </div>
       <div>
-        <h4>Contact</h4>
+        <p class="footer-title">Contact</p>
         <ul>
           <li><a href="mailto:{{EMAIL}}">{{EMAIL}}</a></li>
           <li><a href="tel:{{TEL_INTL}}">{{TEL}}</a></li>
@@ -392,7 +408,7 @@
     </div>
     <div class="footer-bottom">
       <span>© <span id="year"></span> Learning Trip · Tous droits réservés</span>
-      <span><a href="mentions-legales.html">Mentions légales &amp; confidentialité</a></span>
+      <span><a href="mentions-legales.html">Mentions légales &amp; confidentialité</a> · <a href="cgv.html">Conditions générales de vente</a></span>
     </div>
   </div>
 </footer>
@@ -439,17 +455,17 @@
 </a>
 
 <!-- ======================= AMBIANCE SONORE ======================= -->
-<audio id="lt-ambient" src="assets/ambiance-instrumental.mp3" loop preload="auto"></audio>
+<!-- preload="none" : les 3,4 Mo ne sont téléchargés qu'au lancement de la lecture -->
+<audio id="lt-ambient" src="assets/ambiance-instrumental.mp3" loop preload="none"></audio>
 <button id="lt-sound-toggle" class="lt-sound-toggle" type="button" aria-pressed="true" aria-label="Couper la musique" title="Couper la musique">
   <span class="ico-on" aria-hidden="true">🔊</span>
   <span class="ico-off" aria-hidden="true">🔇</span>
 </button>
 
 <script>window.LT_BASE = "";</script>
-<script src="assets/js/config.js"></script>
-<script src="assets/js/land.js"></script>
-<script src="assets/js/destinations.js"></script>
-<script src="assets/js/site.js"></script>
+<script src="assets/js/config.js" defer></script>
+<script src="assets/js/destinations.js" defer></script>
+<script src="assets/js/site.min.js" defer></script>
 <script>
 /* Fond sonore en boucle. L'autoplay sonore étant bloqué par les navigateurs,
    on tente la lecture à l'arrivée puis on démarre au premier geste du visiteur. */

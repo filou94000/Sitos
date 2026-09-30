@@ -3,41 +3,51 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Séjour pédagogique à {{VILLE}} · Learning Trip</title>
+  <title>{{SEO_TITLE}}</title>
   <meta name="description" content="{{META_DESCRIPTION}}">
   <link rel="canonical" href="{{SITE_URL}}/sejours/{{SLUG}}.html">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Séjour pédagogique à {{VILLE}} · Learning Trip">
+  <meta property="og:site_name" content="Learning Trip">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:title" content="{{SEO_TITLE}}">
   <meta property="og:description" content="{{META_DESCRIPTION}}">
-  <meta property="og:image" content="{{SITE_URL}}/assets/img/destinations/{{SLUG}}.jpg">
   <meta property="og:url" content="{{SITE_URL}}/sejours/{{SLUG}}.html">
-  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <meta property="og:image" content="{{OG_IMAGE}}">
+  <meta property="og:image:width" content="{{OG_IMAGE_W}}">
+  <meta property="og:image:height" content="{{OG_IMAGE_H}}">
+  <meta property="og:image:alt" content="{{VILLE}}, {{PAYS}}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{SEO_TITLE}}">
+  <meta name="twitter:description" content="{{META_DESCRIPTION}}">
+  <meta name="twitter:image" content="{{OG_IMAGE}}">
+  <meta name="twitter:image:alt" content="{{VILLE}}, {{PAYS}}">
+  <link rel="icon" type="image/png" sizes="64x64" href="../assets/img/favicon.png">
   <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/site.css">
+  <link rel="manifest" href="../site.webmanifest">
+{{HEAD_ASSETS}}
+  {{JSONLD}}
 </head>
 <body>
 
 <header class="nav solid">
-  <div class="nav-inner">
-    <a class="nav-logo" href="../index.html"><img src="../assets/img/logo.png" alt="Learning Trip"></a>
+  <nav class="nav-inner" aria-label="Navigation principale">
+    <a class="nav-logo" href="../"><img src="../assets/img/logo.png" alt="Learning Trip" sizes="79px"></a>
     <button class="nav-burger" aria-label="Menu">☰</button>
     <ul class="nav-links">
-      <li><a href="../index.html#destinations">Destinations</a></li>
-      <li><a href="../index.html#simulateur">Simulateur</a></li>
-      <li><a href="../index.html#brochure">Brochure</a></li>
+      <li><a href="../#destinations">Destinations</a></li>
+      <li><a href="../#simulateur">Simulateur</a></li>
+      <li><a href="../#brochure">Brochure</a></li>
       <li><a href="#" class="btn btn-primary" style="padding:.55em 1.3em" data-open-modal="conseiller">Être rappelé</a></li>
     </ul>
-  </div>
+  </nav>
   <div class="nav-progress"></div>
 </header>
 
+<main>
 <section class="sejour-hero">
-  <img class="bg" src="../assets/img/destinations/{{SLUG}}.jpg" alt="{{VILLE}}, {{PAYS}}">
+  <img class="bg" src="../assets/img/destinations/{{SLUG}}.jpg" alt="{{VILLE}}, {{PAYS}}" sizes="100vw" fetchpriority="high">
   <div class="container">
-    <p class="crumb"><a href="../index.html">Accueil</a> · <a href="../index.html#destinations">Destinations</a> · {{VILLE}}</p>
+    <nav class="crumb" aria-label="Fil d'Ariane"><a href="../">Accueil</a> · <a href="../#destinations">Destinations</a> · <span aria-current="page">{{VILLE}}</span></nav>
     <span class="sticker">{{CONTINENT}}</span>
     <h1>{{VILLE}}</h1>
     <p class="baseline">{{BASELINE}}</p>
@@ -91,7 +101,7 @@
     </div>
     <div class="sim-cta-row reveal" style="margin-top:2.2rem">
       <button class="btn btn-primary btn-lg" data-open-modal="programme">Obtenir le programme détaillé</button>
-      <a class="btn btn-ghost" href="../index.html#simulateur">Tester mon budget</a>
+      <a class="btn btn-ghost" href="../#simulateur">Tester mon budget</a>
     </div>
   </div>
 </section>
@@ -119,24 +129,25 @@
     <button class="btn btn-primary" data-open-modal="conseiller">Être rappelé</button>
   </div>
 </div>
+</main>
 
 <footer class="footer" style="margin-top:3rem">
   <div class="container">
     <div class="footer-grid">
       <div>
-        <img class="flogo" src="../assets/img/logo.png" alt="Learning Trip">
+        <img class="flogo" src="../assets/img/logo.png" alt="Learning Trip" loading="lazy" sizes="82px">
         <p>Mobilités éducatives clés en main pour CFA et écoles.<br>Pédagogie, logistique, partenariats : on s'occupe de tout.</p>
       </div>
       <div>
-        <h4>Explorer</h4>
+        <p class="footer-title">Explorer</p>
         <ul>
-          <li><a href="../index.html#destinations">Destinations</a></li>
-          <li><a href="../index.html#simulateur">Simulateur de budget</a></li>
-          <li><a href="../index.html#brochure">Brochure</a></li>
+          <li><a href="../#destinations">Destinations</a></li>
+          <li><a href="../#simulateur">Simulateur de budget</a></li>
+          <li><a href="../#brochure">Brochure</a></li>
         </ul>
       </div>
       <div>
-        <h4>Contact</h4>
+        <p class="footer-title">Contact</p>
         <ul>
           <li><a href="mailto:{{EMAIL}}">{{EMAIL}}</a></li>
           <li><a href="tel:{{TEL_INTL}}">{{TEL}}</a></li>
@@ -145,7 +156,7 @@
     </div>
     <div class="footer-bottom">
       <span>© <span id="year"></span> Learning Trip · Tous droits réservés</span>
-      <span><a href="../mentions-legales.html">Mentions légales &amp; confidentialité</a></span>
+      <span><a href="../mentions-legales.html">Mentions légales &amp; confidentialité</a> · <a href="../cgv.html">Conditions générales de vente</a></span>
     </div>
   </div>
 </footer>
@@ -192,8 +203,7 @@
 </a>
 
 <script>window.LT_BASE = "../"; window.LT_PAGE_DEST = "{{SLUG}}";</script>
-<script src="../assets/js/config.js"></script>
-<script src="../assets/js/destinations.js"></script>
-<script src="../assets/js/site.js"></script>
+<script src="../assets/js/config.js" defer></script>
+<script src="../assets/js/site.min.js" defer></script>
 </body>
 </html>

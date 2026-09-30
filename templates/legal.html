@@ -5,34 +5,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mentions légales &amp; confidentialité · Learning Trip</title>
   <meta name="robots" content="noindex">
-  <link rel="icon" type="image/png" href="assets/img/favicon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/site.css">
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+{{HEAD_ASSETS}}
 </head>
 <body>
 
 <header class="nav solid">
-  <div class="nav-inner">
-    <a class="nav-logo" href="index.html"><img src="assets/img/logo.png" alt="Learning Trip"></a>
+  <nav class="nav-inner" aria-label="Navigation principale">
+    <a class="nav-logo" href="./"><img src="assets/img/logo.png" alt="Learning Trip" sizes="79px"></a>
     <ul class="nav-links">
-      <li><a href="index.html">← Retour au site</a></li>
+      <li><a href="./">← Retour au site</a></li>
     </ul>
-  </div>
+  </nav>
 </header>
 
+<main>
 <section class="section" style="padding-top:calc(var(--nav-h) + 3rem)">
   <div class="container legal">
     <h1>Mentions légales &amp; confidentialité</h1>
 
+    <!-- Identité de l'éditeur reprise de l'article 1 des CGV publiées sur
+         https://www.learningtrip.fr/cgv (relevé le 30/09/2026), le site Framer
+         n'ayant pas de page « Mentions légales ». Siège : Dubaï (confirmé le
+         30/09/2026, comme sur la politique de confidentialité en ligne) ; les CGV
+         indiquent Fujairah – Twin Towers, P.O. Box 4422. -->
     <h2>Éditeur</h2>
-    <p>Learning Trip, contact : <a href="mailto:{{EMAIL}}">{{EMAIL}}</a> · {{TEL}}.<br>
-    <em>À compléter : raison sociale, forme juridique, SIREN, adresse du siège, directeur de la publication, hébergeur.</em></p>
+    <p>Le site learningtrip.fr est édité par la société Learning Trip FZE, établissement en zone franche, immatriculée sous la licence n° 20190/2025, dont le siège social est situé à Dubaï, Émirats Arabes Unis.<br>
+    Contact : <a href="mailto:{{EMAIL}}">{{EMAIL}}</a> · {{TEL}}.</p>
+
+    <h2>Directeur de la publication</h2>
+    <p>M. Raoul Dey, Chief Executive Officer (CEO) de Learning Trip FZE.</p>
+
+    <h2>Hébergeur</h2>
+    <p><em>À compléter au moment de la mise en ligne : nom, adresse et téléphone de l'hébergeur du site.</em></p>
 
     <h2>Données personnelles (RGPD)</h2>
     <p>Les formulaires de ce site (brochure, rappel conseiller, demande de programme) collectent uniquement les données nécessaires au traitement de votre demande : nom, établissement, e-mail, téléphone et message.</p>
     <ul>
+      <li><strong>Responsable du traitement :</strong> Learning Trip FZE (voir « Éditeur » ci-dessus).</li>
       <li><strong>Finalité :</strong> répondre à votre demande et vous accompagner dans votre projet de mobilité. Aucune autre utilisation, aucune cession à des tiers.</li>
       <li><strong>Base légale :</strong> votre consentement explicite (case à cocher).</li>
       <li><strong>Hébergement :</strong> données stockées dans l'Union européenne (Irlande).</li>
@@ -48,17 +60,16 @@
     <p>L'ensemble des contenus de ce site (textes, programmes, marque Learning Trip) est protégé. Toute reproduction sans autorisation est interdite.</p>
   </div>
 </section>
+</main>
 
 <footer class="footer">
   <div class="container footer-bottom" style="border:none;padding-top:0">
     <span>© <span id="year"></span> Learning Trip</span>
-    <span><a href="index.html">learningtrip.fr</a></span>
+    <span><a href="cgv.html">Conditions générales de vente</a> · <a href="./">learningtrip.fr</a></span>
   </div>
 </footer>
 
 <script>window.LT_BASE = "";</script>
-<script src="assets/js/config.js"></script>
-<script src="assets/js/destinations.js"></script>
-<script src="assets/js/site.js"></script>
+<script src="assets/js/site.min.js" defer></script>
 </body>
 </html>

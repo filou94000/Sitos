@@ -1,7 +1,8 @@
 /* ==========================================================================
    Learning Trip — site vitrine
-   Globe 3D canvas · simulateur de budget · formulaires leads · animations
-   Aucune dépendance externe.
+   Simulateur de budget · formulaires leads · animations · façade vidéo
+   Aucune dépendance externe. Source : build_site.py en génère site.min.js,
+   le seul fichier chargé par les pages.
    ========================================================================== */
 (function () {
   "use strict";
@@ -32,15 +33,28 @@
     var links = $(".nav-links");
     var burger = $(".nav-burger");
 
-    function onScroll() {
+    /* hauteur défilable mise en cache : la relire à chaque scroll forçait
+       un recalcul de mise en page (reflow) à chaque événement */
+    var maxScroll = 0;
+    function measure() { maxScroll = document.documentElement.scrollHeight - window.innerHeight; }
+    var ticking = false;
+    function update() {
+      ticking = false;
       nav.classList.toggle("scrolled", window.scrollY > 30);
       if (progress) {
-        var h = document.documentElement.scrollHeight - window.innerHeight;
-        progress.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + "%";
+        /* transform plutôt que width : animé par le compositeur, sans reflow */
+        progress.style.transform = "scaleX(" + (maxScroll > 0 ? Math.min(window.scrollY / maxScroll, 1) : 0) + ")";
       }
     }
+    function onScroll() {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }
+    measure();
     window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
+    window.addEventListener("resize", function () { measure(); onScroll(); }, { passive: true });
+    window.addEventListener("load", function () { measure(); onScroll(); });
+    if ("ResizeObserver" in window) new ResizeObserver(function () { measure(); onScroll(); }).observe(document.body);
+    update();
 
     if (burger && links) {
       burger.addEventListener("click", function () { links.classList.toggle("open"); });
@@ -91,192 +105,23 @@
   }
 
   /* ------------------------------------------------------------------------
-     Globe 3D : points de continents + arcs Paris -> destinations
+     Vidéo YouTube : façade légère, le lecteur (≈ 1 Mo de JS tiers) n'est
+     chargé qu'au clic. Sans JS, le lien ouvre la vidéo sur YouTube.
      ------------------------------------------------------------------------ */
-  function initGlobe() {
-    var canvas = $("#globe");
-    if (!canvas) return;
-    var ctx = canvas.getContext("2d");
-    var DPR = Math.min(window.devicePixelRatio || 1, 2);
-    var PARIS = { lat: 48.8566, lng: 2.3522 };
-    var TILT = -0.41;          /* ~23° d'inclinaison */
-    var points = [];           /* nuage de points (continents si dispo) */
-    var running = true;
-
-    function latLngToVec(lat, lng) {
-      var phi = (90 - lat) * Math.PI / 180;
-      var theta = (lng + 180) * Math.PI / 180;
-      return {
-        x: -Math.sin(phi) * Math.cos(theta),
-        y: Math.cos(phi),
-        z: Math.sin(phi) * Math.sin(theta)
-      };
-    }
-
-    if (window.LT_LAND && window.LT_LAND.length) {
-      points = window.LT_LAND.map(function (p) { return latLngToVec(p[0], p[1]); });
-    } else {
-      /* repli : sphère uniforme (spirale de Fibonacci) */
-      var N = 1400, golden = Math.PI * (3 - Math.sqrt(5));
-      for (var i = 0; i < N; i++) {
-        var y = 1 - (i / (N - 1)) * 2;
-        var r = Math.sqrt(1 - y * y);
-        var th = golden * i;
-        points.push({ x: Math.cos(th) * r, y: y, z: Math.sin(th) * r });
-      }
-    }
-
-    var cities = DESTS.map(function (d) {
-      return { v: latLngToVec(d.lat, d.lng), slug: d.slug, ville: d.ville };
-    });
-    var paris = latLngToVec(PARIS.lat, PARIS.lng);
-
-    /* arc = interpolation sphérique Paris -> ville, rayon gonflé au milieu */
-    function arcPoints(a, b, n) {
-      var dot = a.x * b.x + a.y * b.y + a.z * b.z;
-      var omega = Math.acos(Math.max(-1, Math.min(1, dot)));
-      var pts = [];
-      for (var i = 0; i <= n; i++) {
-        var t = i / n;
-        var s1 = Math.sin((1 - t) * omega) / Math.sin(omega);
-        var s2 = Math.sin(t * omega) / Math.sin(omega);
-        var lift = 1 + 0.18 * Math.sin(Math.PI * t);
-        pts.push({
-          x: (s1 * a.x + s2 * b.x) * lift,
-          y: (s1 * a.y + s2 * b.y) * lift,
-          z: (s1 * a.z + s2 * b.z) * lift
-        });
-      }
-      return pts;
-    }
-    var arcs = cities.map(function (c) { return arcPoints(paris, c.v, 64); });
-    var arcCycle = 0;            /* index de l'arc en cours d'animation */
-    var arcProgress = 0;
-
-    function resize() {
-      var rect = canvas.getBoundingClientRect();
-      canvas.width = rect.width * DPR;
-      canvas.height = rect.height * DPR;
-    }
-    resize();
-    window.addEventListener("resize", resize);
-
-    /* rotation : on amène la longitude de Paris face caméra au départ */
-    var rotY = 2.1;
-
-    function project(v, cx, cy, R, rot) {
-      var x = v.x * Math.cos(rot) + v.z * Math.sin(rot);
-      var z = -v.x * Math.sin(rot) + v.z * Math.cos(rot);
-      var y = v.y;
-      var y2 = y * Math.cos(TILT) - z * Math.sin(TILT);
-      var z2 = y * Math.sin(TILT) + z * Math.cos(TILT);
-      return { sx: cx + x * R, sy: cy - y2 * R, z: z2 };
-    }
-
-    function draw(t) {
-      if (!running) return;
-      var W = canvas.width, H = canvas.height;
-      var cx = W / 2, cy = H / 2, R = Math.min(W, H) * 0.40;
-      ctx.clearRect(0, 0, W, H);
-
-      if (!REDUCED) rotY += 0.0016;
-
-      /* halo */
-      var g = ctx.createRadialGradient(cx, cy, R * 0.6, cx, cy, R * 1.35);
-      g.addColorStop(0, "rgba(56,212,240,0.10)");
-      g.addColorStop(1, "rgba(56,212,240,0)");
-      ctx.fillStyle = g;
-      ctx.fillRect(0, 0, W, H);
-
-      /* points (continents) */
-      for (var i = 0; i < points.length; i++) {
-        var p = project(points[i], cx, cy, R, rotY);
-        if (p.z < -0.15) continue;
-        var a = 0.18 + 0.6 * Math.max(0, p.z);
-        ctx.fillStyle = "rgba(201,248,254," + a.toFixed(3) + ")";
-        var s = (0.9 + p.z) * 1.1 * DPR;
-        ctx.fillRect(p.sx, p.sy, s, s);
-      }
-
-      /* arc animé (un à la fois, en boucle) */
-      if (!REDUCED && arcs.length) {
-        arcProgress += 0.012;
-        if (arcProgress >= 1.6) { arcProgress = 0; arcCycle = (arcCycle + 1) % arcs.length; }
-        var arc = arcs[arcCycle];
-        var head = Math.min(1, arcProgress) * (arc.length - 1);
-        var tail = Math.max(0, (arcProgress - 0.45)) / 1.15 * (arc.length - 1);
-        ctx.beginPath();
-        var started = false;
-        for (var j = Math.floor(tail); j <= head; j++) {
-          var q = project(arc[j], cx, cy, R, rotY);
-          if (q.z < -0.2) { started = false; continue; }
-          if (!started) { ctx.moveTo(q.sx, q.sy); started = true; }
-          else ctx.lineTo(q.sx, q.sy);
-        }
-        ctx.strokeStyle = "rgba(56,212,240,0.85)";
-        ctx.lineWidth = 1.4 * DPR;
-        ctx.stroke();
-        /* comète en tête d'arc */
-        var hp = project(arc[Math.floor(head)], cx, cy, R, rotY);
-        if (hp.z > -0.2) {
-          ctx.beginPath();
-          ctx.arc(hp.sx, hp.sy, 2.6 * DPR, 0, Math.PI * 2);
-          ctx.fillStyle = "#c9f8fe";
-          ctx.fill();
-        }
-      }
-
-      /* villes : pulsation */
-      var pulse = REDUCED ? 0.5 : (Math.sin(t / 600) + 1) / 2;
-      cities.forEach(function (c, idx) {
-        var q = project(c.v, cx, cy, R, rotY);
-        if (q.z < 0.05) return;
-        var active = idx === arcCycle;
-        ctx.beginPath();
-        ctx.arc(q.sx, q.sy, (active ? 3.2 : 2) * DPR, 0, Math.PI * 2);
-        ctx.fillStyle = active ? "#38d4f0" : "rgba(201,248,254,0.9)";
-        ctx.fill();
-        if (active) {
-          ctx.beginPath();
-          ctx.arc(q.sx, q.sy, (4 + pulse * 7) * DPR, 0, Math.PI * 2);
-          ctx.strokeStyle = "rgba(56,212,240," + (0.6 - pulse * 0.5).toFixed(3) + ")";
-          ctx.lineWidth = 1.2 * DPR;
-          ctx.stroke();
-          /* étiquette ville */
-          ctx.font = (11 * DPR) + "px Poppins, sans-serif";
-          ctx.fillStyle = "rgba(201,248,254,0.95)";
-          ctx.fillText(c.ville, q.sx + 9 * DPR, q.sy - 7 * DPR);
-        }
+  function initVideoFacade() {
+    $$(".yt-facade[data-yt-id]").forEach(function (link) {
+      link.addEventListener("click", function (e) {
+        e.preventDefault();
+        var iframe = document.createElement("iframe");
+        iframe.src = "https://www.youtube-nocookie.com/embed/" + link.getAttribute("data-yt-id") + "?autoplay=1";
+        iframe.title = link.getAttribute("data-yt-title") || "";
+        iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+        iframe.referrerPolicy = "strict-origin-when-cross-origin";
+        iframe.allowFullscreen = true;
+        link.parentNode.replaceChild(iframe, link);
+        iframe.focus();
       });
-
-      /* point Paris */
-      var pq = project(paris, cx, cy, R, rotY);
-      if (pq.z > 0.05) {
-        ctx.beginPath();
-        ctx.arc(pq.sx, pq.sy, 3 * DPR, 0, Math.PI * 2);
-        ctx.fillStyle = "#ffffff";
-        ctx.fill();
-        ctx.font = "600 " + (11 * DPR) + "px Poppins, sans-serif";
-        ctx.fillStyle = "rgba(255,255,255,0.9)";
-        ctx.fillText("Paris", pq.sx + 8 * DPR, pq.sy + 4 * DPR);
-      }
-
-      requestAnimationFrame(draw);
-    }
-
-    /* économise la batterie : pause hors écran / onglet caché */
-    var io = new IntersectionObserver(function (entries) {
-      var visible = entries[0].isIntersecting;
-      if (visible && !running) { running = true; requestAnimationFrame(draw); }
-      else if (!visible) running = false;
     });
-    io.observe(canvas);
-    document.addEventListener("visibilitychange", function () {
-      if (document.hidden) running = false;
-      else if (!running) { running = true; requestAnimationFrame(draw); }
-    });
-
-    requestAnimationFrame(draw);
   }
 
   /* ------------------------------------------------------------------------
@@ -513,7 +358,7 @@
     initNav();
     initReveal();
     initCounters();
-    initGlobe();
+    initVideoFacade();
     initFilters();
     initSimulator();
     initModalAndForms();
