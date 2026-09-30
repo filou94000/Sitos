@@ -3,7 +3,8 @@
 #
 #   python3 -m pip install -r requirements.txt
 #
-# Pillow : compression des photos (build_site.py) + téléchargement (fetch_photos.py).
-#          Optionnel — sans lui, le build fonctionne mais ne recompresse pas les
-#          photos de la brochure (fallback automatique).
-Pillow>=10.0
+# Pillow : variantes AVIF / WebP / JPEG des images (build_site.py, AVIF depuis
+#          Pillow 11.2), compression des photos de la brochure, téléchargement
+#          (fetch_photos.py). Sans lui, le build fonctionne mais sert les images
+#          d'origine, sans formats modernes ni tailles adaptées.
+Pillow>=11.2

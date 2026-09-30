@@ -19,8 +19,8 @@
   --radius: 20px;
   --radius-lg: 28px;
   --shadow: 0 20px 60px -20px rgba(2, 27, 48, 0.35);
-  --font-title: "Poppins", "Avenir Next", sans-serif;
-  --font-body: "Inter", "Helvetica Neue", sans-serif;
+  --font-title: "Poppins", "Poppins Fallback", "Avenir Next", sans-serif;
+  --font-body: "Inter", "Inter Fallback", "Helvetica Neue", sans-serif;
   --nav-h: 76px;
 }
 
@@ -39,7 +39,10 @@ body {
 
 ::selection { background: var(--cyan); color: var(--ink); }
 
-img { max-width: 100%; display: block; }
+img { max-width: 100%; height: auto; display: block; }
+/* <picture> (formats AVIF/WebP générés par le build) : transparent pour la mise en page */
+picture { display: contents; }
+picture source { display: none; } /* sinon comptées comme éléments flex/grid (gap) */
 a { color: inherit; }
 
 h1, h2, h3, h4 { font-family: var(--font-title); line-height: 1.15; color: var(--navy); }
@@ -88,7 +91,8 @@ h1, h2, h3, h4 { font-family: var(--font-title); line-height: 1.15; color: var(-
 }
 .nav-links a:hover { opacity: 1; }
 .nav-progress {
-  position: absolute; left: 0; bottom: 0; height: 2px; width: 0;
+  position: absolute; left: 0; bottom: 0; height: 2px; width: 100%;
+  transform: scaleX(0); transform-origin: 0 50%;
   background: linear-gradient(90deg, var(--cyan), var(--ice));
 }
 .nav-burger { display: none; }
@@ -105,7 +109,6 @@ h1, h2, h3, h4 { font-family: var(--font-title); line-height: 1.15; color: var(-
   padding: 0.85em 1.7em; border-radius: 999px;
   border: none; cursor: pointer; text-decoration: none;
   transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.3, 1.2), box-shadow 0.25s, background 0.25s;
-  will-change: transform;
 }
 .btn-primary {
   background: linear-gradient(135deg, var(--cyan), #6ee7f7);
@@ -286,7 +289,6 @@ h1, h2, h3, h4 { font-family: var(--font-title); line-height: 1.15; color: var(-
   position: relative; border-radius: var(--radius-lg); overflow: hidden;
   aspect-ratio: 3 / 2; display: flex; align-items: flex-end;
   text-decoration: none; color: var(--white);
-  transform-style: preserve-3d; perspective: 800px;
   transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.3, 1), box-shadow 0.35s, opacity 0.3s;
   box-shadow: 0 16px 40px -18px rgba(2, 27, 48, 0.45);
 }
@@ -472,8 +474,12 @@ input[type="range"].sim-range::-moz-range-thumb {
 
 .footer { background: var(--ink); color: rgba(201, 248, 254, 0.65); padding: 3.5rem 0 2rem; font-size: 0.92rem; }
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 2.5rem; margin-bottom: 2.5rem; }
-.footer img.flogo { height: 46px; margin-bottom: 1rem; }
-.footer h4 { color: var(--ice); font-size: 0.95rem; margin-bottom: 0.9rem; }
+.footer img.flogo { height: 46px; width: auto; margin-bottom: 1rem; }
+/* titres de colonnes du pied de page (balise <p> : pas de saut dans la hiérarchie Hn) */
+.footer .footer-title {
+  font-family: var(--font-title); font-weight: 700; line-height: 1.15;
+  color: var(--ice); font-size: 0.95rem; margin-bottom: 0.9rem;
+}
 .footer ul { list-style: none; }
 .footer li { margin-bottom: 0.5rem; }
 .footer a { color: rgba(201, 248, 254, 0.65); text-decoration: none; transition: color 0.2s; }
@@ -801,6 +807,17 @@ dialog.lt-modal::backdrop { background: rgba(2, 27, 48, 0.7); backdrop-filter: b
   box-shadow: var(--shadow); background: var(--ink);
 }
 .video-embed iframe { width: 100%; height: 100%; border: 0; display: block; }
+/* Façade YouTube : vignette + bouton lecture, le lecteur n'est chargé qu'au clic */
+.yt-facade { position: relative; display: block; width: 100%; height: 100%; cursor: pointer; }
+.yt-facade img { width: 100%; height: 100%; object-fit: cover; }
+.yt-play {
+  position: absolute; left: 50%; top: 50%; z-index: 1;
+  width: 68px; height: 48px; transform: translate(-50%, -50%);
+}
+.yt-play svg { display: block; width: 100%; height: 100%; }
+.yt-play .yt-bg { fill: #212121; fill-opacity: 0.8; transition: fill 0.1s, fill-opacity 0.1s; }
+.yt-facade:hover .yt-bg, .yt-facade:focus-visible .yt-bg { fill: #f00; fill-opacity: 1; }
+.yt-facade:focus-visible { outline: 3px solid var(--cyan); outline-offset: -3px; }
 
 /* --------------------------------------------------------------------------
    Partenaires (accueil)
@@ -868,6 +885,10 @@ dialog.lt-modal::backdrop { background: rgba(2, 27, 48, 0.7); backdrop-filter: b
 .legal h2 { font-size: 1.35rem; margin: 2.2rem 0 0.8rem; }
 .legal p, .legal li { color: var(--text-soft); font-size: 0.97rem; }
 .legal ul { padding-left: 1.3rem; }
+/* Documents longs (CGV) : paragraphes et listes espacés, sous-titres d'article */
+.legal-doc p + p, .legal-doc p + ul, .legal-doc ul + p { margin-top: 0.8rem; }
+.legal-doc li + li { margin-top: 0.35rem; }
+.legal-doc h3 { font-size: 1.08rem; margin: 1.5rem 0 0.6rem; }
 
 /* --------------------------------------------------------------------------
    Responsive

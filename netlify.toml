@@ -1,13 +1,190 @@
 # Configuration Netlify — site vitrine Learning Trip (statique)
 # Aucune étape de build : les fichiers HTML/CSS/JS sont déjà générés et versionnés
 # (régénérables localement via `python3 build_site.py`). Netlify sert la racine telle quelle.
+# Compression : Netlify sert automatiquement HTML, CSS, JS, SVG et JSON en Brotli / gzip.
 
 [build]
   publish = "."
   command = ""
 
-# Page d'erreur : on renvoie l'accueil pour les URL inconnues.
+# ---------------------------------------------------------------------------
+#  Anciennes URL du site Framer (learningtrip.fr) → nouvelles pages (301)
+#  Préserve le référencement acquis et les liens entrants existants.
+# ---------------------------------------------------------------------------
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
+  from = "/destinations"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/destinations/montreal"
+  to = "/sejours/montreal.html"
+  status = 301
+[[redirects]]
+  from = "/destinations/istanbul"
+  to = "/sejours/istanbul.html"
+  status = 301
+[[redirects]]
+  from = "/destinations/seville"
+  to = "/sejours/seville.html"
+  status = 301
+[[redirects]]
+  from = "/destinations/seoul"
+  to = "/sejours/seoul.html"
+  status = 301
+[[redirects]]
+  from = "/destinations/tokyo"
+  to = "/sejours/tokyo.html"
+  status = 301
+[[redirects]]
+  from = "/destinations/shanghai"
+  to = "/sejours/shanghai.html"
+  status = 301
+[[redirects]]
+  from = "/destinations/ho-chi-minh-city"
+  to = "/sejours/ho-chi-minh.html"
+  status = 301
+[[redirects]]
+  from = "/destinations/taipei"
+  to = "/sejours/taipei.html"
+  status = 301
+[[redirects]]
+  from = "/destinations/dubai"
+  to = "/sejours/dubai.html"
+  status = 301
+[[redirects]]
+  from = "/destinations/tanger"
+  to = "/sejours/tanger.html"
+  status = 301
+[[redirects]]
+  from = "/destinations/kuala-lumpur"
+  to = "/sejours/kuala-lumpur.html"
+  status = 301
+# Destinations absentes du nouveau catalogue : renvoi vers la plus proche (validé le 30/09/2026)
+[[redirects]]
+  from = "/destinations/agadir"
+  to = "/sejours/tanger.html"
+  status = 301
+[[redirects]]
+  from = "/destinations/marrakech"
+  to = "/sejours/tanger.html"
+  status = 301
+[[redirects]]
+  from = "/destinations/le-quebec"
+  to = "/sejours/montreal.html"
+  status = 301
+[[redirects]]
+  from = "/politique-de-confidentialité"
+  to = "/mentions-legales.html"
+  status = 301
+[[redirects]]
+  from = "/politique-de-confidentialit%C3%A9"
+  to = "/mentions-legales.html"
+  status = 301
+[[redirects]]
+  from = "/cgv"
+  to = "/cgv.html"
+  status = 301
+  force = true
+
+# ---------------------------------------------------------------------------
+#  Fichiers de travail du dépôt : jamais servis (sources, gabarits, données)
+# ---------------------------------------------------------------------------
+[[redirects]]
+  from = "/templates/*"
+  to = "/404.html"
   status = 404
+  force = true
+[[redirects]]
+  from = "/data/*"
+  to = "/404.html"
+  status = 404
+  force = true
+[[redirects]]
+  from = "/supabase/*"
+  to = "/404.html"
+  status = 404
+  force = true
+[[redirects]]
+  from = "/docs/*"
+  to = "/404.html"
+  status = 404
+  force = true
+[[redirects]]
+  from = "/build_site.py"
+  to = "/404.html"
+  status = 404
+  force = true
+[[redirects]]
+  from = "/serve.py"
+  to = "/404.html"
+  status = 404
+  force = true
+[[redirects]]
+  from = "/fetch_photos.py"
+  to = "/404.html"
+  status = 404
+  force = true
+[[redirects]]
+  from = "/requirements.txt"
+  to = "/404.html"
+  status = 404
+  force = true
+[[redirects]]
+  from = "/README.md"
+  to = "/404.html"
+  status = 404
+  force = true
+[[redirects]]
+  from = "/netlify.toml"
+  to = "/404.html"
+  status = 404
+  force = true
+
+# Page 404 : Netlify sert automatiquement /404.html (avec le statut 404)
+# pour toute URL inconnue — plus besoin de règle « /* → /index.html ».
+
+# ---------------------------------------------------------------------------
+#  Cache navigateur
+#  Les assets référencés par les pages portent une empreinte (?v=…) recalculée
+#  à chaque build : on peut les garder un an. Le HTML reste revalidé à chaque
+#  visite (réglage par défaut de Netlify).
+# ---------------------------------------------------------------------------
+[[headers]]
+  for = "/assets/opt/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+[[headers]]
+  for = "/assets/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+[[headers]]
+  for = "/assets/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+[[headers]]
+  for = "/assets/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+[[headers]]
+  for = "/assets/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+[[headers]]
+  for = "/assets/logo/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+[[headers]]
+  for = "/assets/hero-loop.mp4"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+[[headers]]
+  for = "/assets/ambiance-instrumental.mp3"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# La brochure est remise contre un formulaire : ne pas l'indexer
+# (le PDF resterait sinon trouvable directement dans Google).
+[[headers]]
+  for = "/assets/brochure/*"
+  [headers.values]
+    X-Robots-Tag = "noindex"

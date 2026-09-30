@@ -5,7 +5,16 @@
     "tagline": "Ouvrez l'international à vos apprentis",
     "email": "contact@learningtrip.fr",
     "telephone": "07 98 09 78 65",
-    "telephone_intl": "+33798097865"
+    "telephone_intl": "+33798097865",
+    "description": "Séjours pédagogiques à l'international pour les CFA et les écoles. Préparation, logistique, partenariats, encadrement sur place.",
+    "reseaux_sociaux": [],
+    "raison_sociale": "Learning Trip FZE",
+    "adresse": {
+      "_source": "Siège : Dubaï (confirmé le 30/09/2026, comme sur la politique de confidentialité en ligne). Les CGV indiquent Fujairah – Twin Towers, P.O. Box 4422.",
+      "streetAddress": "",
+      "addressLocality": "Dubaï",
+      "addressCountry": "AE"
+    }
   },
   "themes": {
     "tech": "Tech & innovation",
@@ -118,7 +127,7 @@
           }
         ]
       },
-      "meta_description": "Séjour pédagogique à Montréal pour CFA et écoles : immersion tech nord-américaine en français, rencontres professionnelles et défis urbains. Programme détaillé sur demande."
+      "meta_description": "Séjour pédagogique à Montréal pour CFA et écoles : immersion tech nord-américaine en français, rencontres pro et défis urbains. Programme détaillé sur demande."
     },
     {
       "slug": "dubai",
@@ -171,7 +180,7 @@
         "Un atelier interculturel qui change la façon dont vos apprentis se présentent en entretien.",
         "Le silence du désert après l'énergie de la ville — le moment où le groupe se soude."
       ],
-      "meta_description": "Séjour pédagogique à Dubaï pour CFA et écoles : immersions en entreprise, dialogues professionnels et ateliers interculturels au cœur du Golfe. Programme détaillé sur demande."
+      "meta_description": "Séjour pédagogique à Dubaï pour CFA et écoles : immersions en entreprise, dialogues pro et ateliers interculturels au cœur du Golfe. Programme sur demande."
     },
     {
       "slug": "tokyo",
@@ -224,7 +233,7 @@
         "Un repas dont vos apprentis ne connaîtront le contenu qu'en s'asseyant.",
         "Le shinkansen qui entre en gare à la minute exacte, et ce que ça raconte d'un pays."
       ],
-      "meta_description": "Séjour pédagogique à Tokyo pour CFA et écoles : culture de la précision, rencontres professionnelles francophones et immersion entre tradition et robotique. Programme sur demande."
+      "meta_description": "Séjour pédagogique à Tokyo pour CFA et écoles : culture de la précision, rencontres pro francophones, entre tradition et robotique. Programme sur demande."
     },
     {
       "slug": "seoul",
@@ -277,7 +286,7 @@
         "Un atelier dont le thème surprend tous les groupes — et qu'on ne dévoile jamais à l'avance.",
         "Une soirée dans un marché de nuit, par équipes, avec mission de commander en coréen."
       ],
-      "meta_description": "Séjour pédagogique à Séoul pour CFA et écoles : immersion dans l'écosystème tech coréen, décryptage culturel et rencontres professionnelles. Programme détaillé sur demande."
+      "meta_description": "Séjour pédagogique à Séoul pour CFA et écoles : immersion dans l'écosystème tech coréen, décryptage culturel et rencontres pro. Programme détaillé sur demande."
     },
     {
       "slug": "kuala-lumpur",
@@ -330,7 +339,7 @@
         "Un déjeuner commandé entièrement en anglais par les apprentis, sans aide.",
         "Une rencontre dont le lieu, en hauteur, fait autant d'effet que le contenu."
       ],
-      "meta_description": "Séjour pédagogique à Kuala Lumpur pour CFA et écoles : immersion anglophone totale, découverte d'un hub d'affaires multiculturel d'Asie du Sud-Est. Programme sur demande."
+      "meta_description": "Séjour pédagogique à Kuala Lumpur pour CFA et écoles : immersion anglophone dans un hub d'affaires multiculturel d'Asie du Sud-Est. Programme sur demande."
     },
     {
       "slug": "shanghai",
@@ -383,7 +392,7 @@
         "Une démonstration de paiement et de commerce 100 % mobile qui laisse le groupe sans voix.",
         "Un thé dans un jardin Ming, à dix minutes des tours de 600 mètres."
       ],
-      "meta_description": "Séjour pédagogique à Shanghai pour CFA et écoles : prendre la mesure de la deuxième économie mondiale, immersion commerce et tech. Programme détaillé sur demande."
+      "meta_description": "Séjour pédagogique à Shanghai pour CFA et écoles : prendre la mesure de la deuxième économie mondiale, immersion commerce et tech. Programme sur demande."
     },
     {
       "slug": "taipei",
@@ -436,7 +445,7 @@
         "Un défi street food dans un marché de nuit, par équipes, budget limité.",
         "Une conversation avec un professionnel du silicium qui rend la géopolitique soudain très concrète."
       ],
-      "meta_description": "Séjour pédagogique à Taipei pour CFA et écoles : au cœur de l'industrie mondiale des semi-conducteurs, immersion tech et culture taïwanaise. Programme sur demande."
+      "meta_description": "Séjour pédagogique à Taipei pour CFA et écoles : au cœur de l'industrie des semi-conducteurs, immersion tech et culture taïwanaise. Programme sur demande."
     },
     {
       "slug": "ho-chi-minh",
@@ -489,7 +498,7 @@
         "Un échange avec un entrepreneur local dont le parcours force le respect du groupe.",
         "Une matinée dans un marché où l'on négocie tout — exercice imposé."
       ],
-      "meta_description": "Séjour pédagogique à Hô Chi Minh-Ville pour CFA et écoles : immersion dans l'économie vietnamienne en plein boom et héritage franco-vietnamien. Programme sur demande."
+      "meta_description": "Séjour pédagogique à Hô Chi Minh-Ville pour CFA et écoles : l'économie vietnamienne en plein boom et l'héritage franco-vietnamien. Programme sur demande."
     },
     {
       "slug": "seville",
@@ -541,7 +550,7 @@
         "Une soirée flamenco dont l'intensité surprend même les plus blasés.",
         "Un défi tapas par équipes dans le quartier de Triana."
       ],
-      "meta_description": "Séjour pédagogique à Séville pour CFA et écoles : première mobilité européenne idéale, immersion espagnole, patrimoine UNESCO et art de vivre andalou. Programme sur demande."
+      "meta_description": "Séjour pédagogique à Séville pour CFA et écoles : première mobilité européenne idéale, immersion espagnole, patrimoine UNESCO et art de vivre andalou."
     },
     {
       "slug": "tanger",
@@ -594,7 +603,7 @@
         "Une négociation dans la médina, en français, en arabe et avec les mains.",
         "Un coucher de soleil là où deux mers se rencontrent."
       ],
-      "meta_description": "Séjour pédagogique à Tanger pour CFA et écoles : entre deux continents, immersion francophone, hub industriel et culture marocaine. Programme détaillé sur demande."
+      "meta_description": "Séjour pédagogique à Tanger pour CFA et écoles : entre deux continents, immersion francophone, hub industriel et culture marocaine. Programme sur demande."
     },
     {
       "slug": "istanbul",
@@ -647,7 +656,7 @@
         "Une négociation au Grand Bazar préparée en atelier le matin même.",
         "Un simit partagé sur le ferry, entre deux continents."
       ],
-      "meta_description": "Séjour pédagogique à Istanbul pour CFA et écoles : la ville sur deux continents, école de commerce relationnel et patrimoine de trois empires. Programme sur demande."
+      "meta_description": "Séjour pédagogique à Istanbul pour CFA et écoles : une ville sur deux continents, commerce relationnel et patrimoine de trois empires. Programme sur demande."
     }
   ]
 }
